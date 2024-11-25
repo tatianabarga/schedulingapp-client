@@ -24,7 +24,7 @@ export default function Schedule({ scheduleObj }) {
         {/* map through days in this week in scheduleObj and pass to Day component */}
         <div className="lists">
           {daysArr.map((day) => (
-            <Day key={day.id} DayObj={day} />
+            <Day key={day.id} dayObj={day} />
           ))}
         </div>
       </div>

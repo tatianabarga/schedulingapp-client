@@ -8,7 +8,7 @@ export default function ScheduleForm() {
   // }
 
   // const onSubmit = () => {
-  //   const datesArr = scheduleObj.dates.split(', ');
+  //   const datesArr = scheduleObj.dates.split(', '); // move this to onChangeDates func
   //   setDates(datesArr); // something like this but in reverse. dates will come in as an array and we need to make it into a string
   // };
 
