@@ -1,8 +1,8 @@
 // import { defaultConfig } from 'next/dist/server/config-shared';
 import { clientCredentials } from '../client';
 
-const getDaysBySchedule = (scheduleId) => new Promise((resolve, reject) => {
-  fetch(`${clientCredentials.databaseURL}/days?schedule=${scheduleId}`, {
+const getSchedulesByUser = (userId) => new Promise((resolve, reject) => {
+  fetch(`${clientCredentials.databaseURL}/schedule?user=${userId}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -25,8 +25,8 @@ const getDaysBySchedule = (scheduleId) => new Promise((resolve, reject) => {
 //     .catch(reject);
 // });
 
-const createDay = (payload) => new Promise((resolve, reject) => {
-  fetch(`${clientCredentials.databaseURL}/day`, {
+const createSchedule = (payload) => new Promise((resolve, reject) => {
+  fetch(`${clientCredentials.databaseURL}/schedule`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -84,9 +84,9 @@ const createDay = (payload) => new Promise((resolve, reject) => {
 // });
 
 export {
-  getDaysBySchedule,
+  getSchedulesByUser,
   // getSingleProfile,
-  createDay,
+  createSchedule,
 // updateProfile,
 // getProfilesByCircle,
 // deleteProfile,

@@ -4,8 +4,8 @@ import React from 'react';
 export default function Day({ dayObj }) {
   return (
     <div className="Day Component">
-      <div className="weekday-header">Weekday</div> {/* make this display weekday property from object */}
-      <div className="day-date">{dayObj.date}</div>
+      <div className="weekday-header">{dayObj?.weekday}</div> {/* make this display weekday property from object */}
+      <div className="day-date">{dayObj?.date}</div>
       <div className="task-cont">
         {/* map through tasks */}
       </div>
@@ -16,7 +16,7 @@ export default function Day({ dayObj }) {
 Day.propTypes = {
   dayObj: PropTypes.shape({
     id: PropTypes.number,
-    week: PropTypes.string,
+    weekday: PropTypes.string,
     scheduleId: PropTypes.number,
     user: PropTypes.number,
     date: PropTypes.string,
