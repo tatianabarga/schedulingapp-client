@@ -2,7 +2,7 @@
 import { clientCredentials } from '../client';
 
 const getDaysBySchedule = (scheduleId) => new Promise((resolve, reject) => {
-  fetch(`${clientCredentials.databaseURL}/days?schedule=${scheduleId}`, {
+  fetch(`${clientCredentials.databaseURL}/day?schedule=${scheduleId}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',

@@ -13,17 +13,17 @@ const getSchedulesByUser = (userId) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-// const getSingleProfile = (id) => new Promise((resolve, reject) => {
-//   fetch(`${clientCredentials.databaseURL}/profiles/${id}`, {
-//     method: 'GET',
-//     headers: {
-//       'Content-Type': 'application/json',
-//     },
-//   })
-//     .then((response) => response.json())
-//     .then((data) => resolve(data))
-//     .catch(reject);
-// });
+const getSingleSchedule = (id) => new Promise((resolve, reject) => {
+  fetch(`${clientCredentials.databaseURL}/schedule/${id}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => resolve(data))
+    .catch(reject);
+});
 
 const createSchedule = (payload) => new Promise((resolve, reject) => {
   fetch(`${clientCredentials.databaseURL}/schedule`, {
@@ -85,7 +85,7 @@ const createSchedule = (payload) => new Promise((resolve, reject) => {
 
 export {
   getSchedulesByUser,
-  // getSingleProfile,
+  getSingleSchedule,
   createSchedule,
 // updateProfile,
 // getProfilesByCircle,
