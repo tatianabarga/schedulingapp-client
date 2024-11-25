@@ -18,7 +18,7 @@ export default function Schedule({ scheduleObj }) {
 
   return (
     <div className="schedule-component">
-      <div className="schedule-label">Schedule Name</div>
+      <div className="schedule-label">{scheduleObj?.label}</div>
       <div className="task-area">
         {/* tasks component here */}
         {/* map through days in this week in scheduleObj and pass to Day component */}
@@ -31,8 +31,6 @@ export default function Schedule({ scheduleObj }) {
     </div>
   );
 }
-
-// set up props
 
 Schedule.propTypes = {
   scheduleObj: PropTypes.shape({
