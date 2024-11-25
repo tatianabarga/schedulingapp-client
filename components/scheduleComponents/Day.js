@@ -1,13 +1,25 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+// import React, { useEffect, useState } from 'react';
+// import { getTasksByDay } from '../../utils/data/taksData';
 
 export default function Day({ dayObj }) {
+  // const [tasks, setTasks] = useState([]);
+
+  // useEffect(() => {
+  //   if (dayObj.id) {
+  //     getTasksByDay(dayObj.id).then(setTasks);
+  //   }
+  // }, [dayObj]);
+
   return (
     <div className="Day Component">
       <div className="weekday-header">{dayObj?.weekday}</div> {/* make this display weekday property from object */}
       <div className="day-date">{dayObj?.date}</div>
       <div className="task-cont">
         {/* map through tasks */}
+        {/* {tasks.map(() => ( */}
+        {/* // {<Task taskObj={task} />}
+        // ))} */}
       </div>
     </div>
   );
