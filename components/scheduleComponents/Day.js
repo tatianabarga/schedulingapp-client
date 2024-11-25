@@ -8,7 +8,7 @@ export default function Day({ dayObj }) {
 
   useEffect(() => {
     if (dayObj.id) {
-      getTasksByDay(dayObj.id).then(setTasks);
+      getTasksByDay(dayObj.id).then(setTasks).then(console.log(tasks));
     }
   }, [dayObj]);
 
@@ -19,7 +19,7 @@ export default function Day({ dayObj }) {
       <div className="task-cont">
         {/* map through tasks */}
         {tasks.map((task) => (
-          <Task key={task.id} taskObj={task} />
+          <Task taskObj={task} />
         ))}
       </div>
     </div>

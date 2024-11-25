@@ -2,7 +2,7 @@
 import { clientCredentials } from '../client';
 
 const getTasksByDay = (dayId) => new Promise((resolve, reject) => {
-  fetch(`${clientCredentials.databaseURL}/day?task=${dayId}`, {
+  fetch(`${clientCredentials.databaseURL}/task?day=${dayId}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',

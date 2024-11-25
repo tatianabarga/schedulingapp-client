@@ -9,10 +9,9 @@ export default function Schedule({ scheduleObj }) {
 
   useEffect(() => {
     if (scheduleObj.id) {
-      getDaysBySchedule(scheduleObj.id).then(setDaysArr);
-      console.log(scheduleObj);
-      console.log(daysArr);
+      getDaysBySchedule(scheduleObj.id).then(setDaysArr).then(console.log('daysArr:', daysArr));
     }
+    // console.log(scheduleObj);
   }, [scheduleObj.id]);
 
   // useEffect(() => {
