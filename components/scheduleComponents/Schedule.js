@@ -22,7 +22,11 @@ export default function Schedule({ scheduleObj }) {
       <div className="task-area">
         {/* tasks component here */}
         {/* map through days in this week in scheduleObj and pass to Day component */}
-        <Day da={daysArr} /> {/* fix this */}
+        <div className="lists">
+          {daysArr.map((day) => (
+            <Day key={day.id} DayObj={day} />
+          ))}
+        </div>
       </div>
     </div>
   );
