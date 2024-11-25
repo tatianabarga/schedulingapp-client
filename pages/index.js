@@ -4,7 +4,7 @@ import { getSchedulesByUser } from '../utils/data/scheduleData';
 
 function Home() {
   const { user } = useAuth();
-  const [schedules, setSchedules] = useState({});
+  const [schedules, setSchedules] = useState([]);
 
   useEffect(() => {
     getSchedulesByUser(user?.id).then(setSchedules);
@@ -15,7 +15,7 @@ function Home() {
       <div className="add-sched-btn">
         {/* make add shedule btn */}
         {/* map through schedules that were called and set above */}
-        {schedules.map((sched) => (
+        {schedules?.map((sched) => (
           <div className="schedule-item">
             <div>{sched?.label}</div>
           </div>
