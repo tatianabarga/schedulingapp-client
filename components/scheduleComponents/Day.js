@@ -1,15 +1,16 @@
 import PropTypes from 'prop-types';
-// import React, { useEffect, useState } from 'react';
-// import { getTasksByDay } from '../../utils/data/taksData';
+import React, { useEffect, useState } from 'react';
+import { getTasksByDay } from '../../utils/data/taksData';
+import Task from './Task';
 
 export default function Day({ dayObj }) {
-  // const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState([]);
 
-  // useEffect(() => {
-  //   if (dayObj.id) {
-  //     getTasksByDay(dayObj.id).then(setTasks);
-  //   }
-  // }, [dayObj]);
+  useEffect(() => {
+    if (dayObj.id) {
+      getTasksByDay(dayObj.id).then(setTasks);
+    }
+  }, [dayObj]);
 
   return (
     <div className="Day Component">
@@ -17,9 +18,9 @@ export default function Day({ dayObj }) {
       <div className="day-date">{dayObj?.date}</div>
       <div className="task-cont">
         {/* map through tasks */}
-        {/* {tasks.map(() => ( */}
-        {/* // {<Task taskObj={task} />}
-        // ))} */}
+        {tasks.map((task) => (
+          <Task key={task.id} taskObj={task} />
+        ))}
       </div>
     </div>
   );
