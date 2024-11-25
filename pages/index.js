@@ -6,6 +6,7 @@ function Home() {
     <div className="home-page">
       <div className="add-sched-btn">
         {/* make add shedule btn */}
+        {/* map through schedules that were called and set above */}
       </div>
     </div>
   );
