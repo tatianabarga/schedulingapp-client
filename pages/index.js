@@ -16,9 +16,9 @@ function Home() {
         {/* make add shedule btn */}
         {/* map through schedules that were called and set above */}
         {schedules?.map((sched) => (
-          <div className="schedule-item">
-            <div>{sched?.label}</div>
-          </div>
+          <a className="schedule-item" href={`/schedule/${sched.id}`}>
+            <div className="schedule-item-label">{sched?.label}</div>
+          </a>
         ))}
       </div>
     </div>
