@@ -1,8 +1,8 @@
 // import { defaultConfig } from 'next/dist/server/config-shared';
 import { clientCredentials } from '../client';
 
-const getSchedulesByUser = (userId) => new Promise((resolve, reject) => {
-  fetch(`${clientCredentials.databaseURL}/schedule?user=${userId}`, {
+const getTasksByDay = (dayId) => new Promise((resolve, reject) => {
+  fetch(`${clientCredentials.databaseURL}/task?day=${dayId}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -13,20 +13,20 @@ const getSchedulesByUser = (userId) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-const getSingleSchedule = (id) => new Promise((resolve, reject) => {
-  fetch(`${clientCredentials.databaseURL}/schedule/${id}`, {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  })
-    .then((response) => response.json())
-    .then((data) => resolve(data))
-    .catch(reject);
-});
+// const getSingleProfile = (id) => new Promise((resolve, reject) => {
+//   fetch(`${clientCredentials.databaseURL}/profiles/${id}`, {
+//     method: 'GET',
+//     headers: {
+//       'Content-Type': 'application/json',
+//     },
+//   })
+//     .then((response) => response.json())
+//     .then((data) => resolve(data))
+//     .catch(reject);
+// });
 
-const createSchedule = (payload) => new Promise((resolve, reject) => {
-  fetch(`${clientCredentials.databaseURL}/schedule`, {
+const createTask = (payload) => new Promise((resolve, reject) => {
+  fetch(`${clientCredentials.databaseURL}/task`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -84,9 +84,9 @@ const createSchedule = (payload) => new Promise((resolve, reject) => {
 // });
 
 export {
-  getSchedulesByUser,
-  getSingleSchedule,
-  createSchedule,
+  getTasksByDay,
+  // getSingleProfile,
+  createTask,
 // updateProfile,
 // getProfilesByCircle,
 // deleteProfile,

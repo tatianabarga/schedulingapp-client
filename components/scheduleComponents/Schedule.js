@@ -5,11 +5,14 @@ import { getDaysBySchedule } from '../../utils/data/dayData';
 
 export default function Schedule({ scheduleObj }) {
   // const [dates, setDates] = useState([]);
-  const [daysArr, setDaysArr] = useState([]); // array of date ids
+  const [daysArr, setDaysArr] = useState([]); // array of days
 
   useEffect(() => {
-    getDaysBySchedule(scheduleObj.id).then(setDaysArr); // make this api call
-  }, [scheduleObj]);
+    if (scheduleObj.id) {
+      getDaysBySchedule(scheduleObj.id).then(setDaysArr).then(console.log('daysArr:', daysArr));
+    }
+    // console.log(scheduleObj);
+  }, [scheduleObj.id]);
 
   // useEffect(() => {
   //   const datesArr = scheduleObj.dates.split(', ');
