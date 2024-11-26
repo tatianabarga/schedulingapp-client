@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
-import { getTasksByDay } from '../../utils/data/taksData';
+import { getTasksByDay } from '../../utils/data/tasksData';
 import Task from './Task';
 
 export default function Day({ dayObj }) {
