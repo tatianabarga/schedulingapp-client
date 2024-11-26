@@ -18,7 +18,6 @@ export default function ScheduleForm() {
       {/* schedule name */}
       {/* choose a tempate */}
       {/* choose a date */}
-      {/* goals section? */}
     </div>
   );
 }

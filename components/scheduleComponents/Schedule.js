@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import Day from './Day';
 import { getDaysBySchedule } from '../../utils/data/dayData';
 import Goals from './Goals';
+import Tasks from './Tasks';
 
 export default function Schedule({ scheduleObj }) {
-  // const [dates, setDates] = useState([]);
   const [daysArr, setDaysArr] = useState([]); // array of days
 
   useEffect(() => {
@@ -15,18 +15,13 @@ export default function Schedule({ scheduleObj }) {
     // console.log(scheduleObj);
   }, [scheduleObj.id]);
 
-  // useEffect(() => {
-  //   const datesArr = scheduleObj.dates.split(', ');
-  //   setDates(datesArr); // something like this
-  // }, [scheduleObj]);
-
   return (
     <div className="schedule-component">
       <div className="schedule-label">{scheduleObj?.label}</div>
       <div className="task-area">
-        {/* <div className="tasks">
+        <div className="tasks">
           <Tasks />
-        </div> */}
+        </div>
         {/* map through days in this week in scheduleObj and pass to Day component */}
         <div className="days">
           {daysArr.map((day) => (
