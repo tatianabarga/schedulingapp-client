@@ -9,7 +9,7 @@ export default function Goals({ goals }) {
   }, [goals]);
 
   return (
-    <div>
+    <div className="goals-component">
       <div className="goals-header">Goals</div>
       <div className="goal-items-cont">
         {goalsArr.map((goal) => (

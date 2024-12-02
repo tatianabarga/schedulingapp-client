@@ -2,14 +2,17 @@ import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import { createTask, getTasksByDay } from '../../utils/data/tasksData';
 import Task from './Task';
+// import { useRouter } from 'next/router';
 
 export default function Day({ dayObj }) {
   const [tasks, setTasks] = useState([]);
+  // const router = useRouter();
+  // const [scheduleId, setScheduleId] = useState('');
   const [taskInput, setTaskInput] = useState(false);
   const [newTask, setNewTask] = useState({
     label: '',
-    schedule: dayObj.scheduleId,
-    dayId: dayObj.id,
+    schedule: dayObj?.scheduleId,
+    dayId: dayObj?.id,
   });
 
   const changeTaskInput = () => {
@@ -22,11 +25,12 @@ export default function Day({ dayObj }) {
 
   const taskChange = (e) => {
     setNewTask({ ...newTask, label: e.target.value });
+    console.log('newTask: ', newTask);
   };
 
   const submitTask = () => {
-    if (newTask.trim() === '') {
-      alert('Task cannot be empty!');
+    if (newTask.label === '') {
+      alert('Task cannot be empty');
       return;
     }
     createTask(newTask);
@@ -34,7 +38,7 @@ export default function Day({ dayObj }) {
 
   useEffect(() => {
     if (dayObj.id) {
-      getTasksByDay(dayObj.id).then(setTasks).then(console.log(tasks));
+      getTasksByDay(dayObj.id).then(setTasks).then(console.log(dayObj));
     }
   }, [dayObj]);
 

@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types';
-import React, { useEffect } from 'react';
+// import React, { useEffect } from 'react';
 
 export default function Task({ taskObj }) {
-  useEffect(() => {
-    console.log(taskObj);
-  });
+  // useEffect(() => {
+  //   console.log(taskObj);
+  // });
 
   return (
     <div className="task-componenet">
