@@ -13,8 +13,11 @@ export default function ScheduleForm() {
   // };
 
   return (
-    <div>
-      hi
+    <div className="schedule-form-component">
+      <div>Create A New Schedule</div>
+      {/* schedule name */}
+      {/* choose a tempate */}
+      {/* choose a date */}
     </div>
   );
 }

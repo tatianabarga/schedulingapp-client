@@ -13,6 +13,18 @@ const getTasksByDay = (dayId) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+const getTasksBySchedule = (scheduleId) => new Promise((resolve, reject) => {
+  fetch(`${clientCredentials.databaseURL}/task?schedule=${scheduleId}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then(resolve)
+    .catch(reject);
+});
+
 // const getSingleProfile = (id) => new Promise((resolve, reject) => {
 //   fetch(`${clientCredentials.databaseURL}/profiles/${id}`, {
 //     method: 'GET',
@@ -85,6 +97,7 @@ const createTask = (payload) => new Promise((resolve, reject) => {
 
 export {
   getTasksByDay,
+  getTasksBySchedule,
   // getSingleProfile,
   createTask,
 // updateProfile,
