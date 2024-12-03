@@ -1,14 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import { createSchedule } from '../utils/data/scheduleData';
+import { useAuth } from '../utils/context/authContext';
 
 export default function ScheduleForm() {
+  const { user } = useAuth();
   const initialState = {
     label: '',
-    // dates: '',
+    user: user.id,
+    dates: '',
   };
 
   // const [dates, setDates] = useState([]);
-  const [payload, setPayload] = useState({ initialState });
+  const [payload, setPayload] = useState({
+    label: '',
+    user: user.id,
+    dates: '',
+  });
 
   useEffect(() => {
     console.log(payload);
