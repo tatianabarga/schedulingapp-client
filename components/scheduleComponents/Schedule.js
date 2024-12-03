@@ -20,7 +20,7 @@ export default function Schedule({ scheduleObj }) {
       <div className="schedule-label">{scheduleObj?.label}</div>
       <div className="task-area">
         <div className="tasks">
-          <Tasks />
+          <Tasks scheduleId={scheduleObj.id} />
         </div>
         {/* map through days in this week in scheduleObj and pass to Day component */}
         <div className="days">

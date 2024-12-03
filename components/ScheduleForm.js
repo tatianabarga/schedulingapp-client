@@ -36,7 +36,7 @@ export default function ScheduleForm() {
       <div>Create A New Schedule</div>
       {/* schedule name */}
       <input
-        className="sched-label-imp"
+        className="sched-label-inp"
         type="text"
         value={payload.label}
         onChange={(e) => setPayload({ ...payload, label: e.target.value })}
