@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { createTask, getTasksByDay } from '../../utils/data/tasksData';
 import Task from './Task';
 // import { useRouter } from 'next/router';
@@ -12,7 +12,7 @@ export default function Day({ dayObj }) {
   const [newTask, setNewTask] = useState({
     label: '',
     schedule: dayObj?.schedule,
-    dayId: dayObj?.id,
+    day: dayObj?.id,
     user: dayObj.user,
     locked_status: false,
   });
@@ -30,19 +30,23 @@ export default function Day({ dayObj }) {
     console.log('newTask: ', newTask);
   };
 
+  const fetchTasks = useCallback(() => {
+    if (dayObj.id) {
+      getTasksByDay(dayObj.id).then(setTasks).then(console.log(dayObj));
+    }
+  }, [dayObj]);
+
   const submitTask = () => {
     if (newTask.label === '') {
       alert('Task cannot be empty');
       return;
     }
-    createTask(newTask);
+    createTask(newTask).then(() => { fetchTasks(); }).then(console.log('i did it'));
   };
 
   useEffect(() => {
-    if (dayObj.id) {
-      getTasksByDay(dayObj.id).then(setTasks).then(console.log(dayObj));
-    }
-  }, [dayObj]);
+    fetchTasks();
+  }, [fetchTasks]);
 
   return (
     <div className="Day Component">
