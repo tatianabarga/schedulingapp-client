@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { createTask, getTasksBySchedule } from '../../utils/data/tasksData';
 import { useAuth } from '../../utils/context/authContext';
@@ -22,13 +22,27 @@ export default function Tasks({ scheduleId }) {
     }
   };
 
+  const fetchTasks = useCallback(() => {
+    if (scheduleId) {
+      getTasksBySchedule(scheduleId)
+        .then((data) => {
+          const filteredTasks = data.filter((item) => item.day === null);
+          setTasks(filteredTasks);
+        });
+    }
+  }, [scheduleId]);
+
   const submitTask = () => {
-    createTask(newTask);
+    if (newTask.label === '') {
+      alert('Task cannot be empty');
+      return;
+    }
+    createTask(newTask).then(() => { fetchTasks(); }).then(setTaskInput(false));
   };
 
   useEffect(() => {
-    getTasksBySchedule(scheduleId).then(setTasks((data) => data.filter((item) => item.day_id === 0))).then(console.log('scheduleId', scheduleId));
-  }, [scheduleId]);
+    fetchTasks();
+  }, [fetchTasks]);
 
   useEffect(() => {
     setNewTask({ ...newTask, schedule: scheduleId });
@@ -36,6 +50,7 @@ export default function Tasks({ scheduleId }) {
 
   return (
     <div className="tasks-component">
+      <div>staged tasks</div>
       <div className="add-task-btn">
         <button type="button" onClick={changeTaskInput}> Add a Task</button>
       </div>
@@ -53,7 +68,7 @@ export default function Tasks({ scheduleId }) {
       ) : null}
       <div className="staged-tasks">
         {tasks.map((task) => (
-          <div className="task">{task}</div>
+          <div className="task">{task.label}</div>
         ))}
       </div>
     </div>
