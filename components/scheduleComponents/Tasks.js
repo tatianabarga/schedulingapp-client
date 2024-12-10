@@ -27,7 +27,15 @@ export default function Tasks({ scheduleId }) {
   };
 
   useEffect(() => {
-    getTasksBySchedule(scheduleId).then(setTasks((data) => data.filter((item) => item.day_id === 0))).then(console.log('scheduleId', scheduleId));
+    if (scheduleId) {
+      getTasksBySchedule(scheduleId)
+        .then((data) => {
+          console.log('api response', data);
+          const filteredTasks = data.filter((item) => item.day === null);
+          setTasks(filteredTasks);
+          console.log('tasks', tasks);
+        });
+    }
   }, [scheduleId]);
 
   useEffect(() => {
@@ -36,6 +44,7 @@ export default function Tasks({ scheduleId }) {
 
   return (
     <div className="tasks-component">
+      <div>staged tasks</div>
       <div className="add-task-btn">
         <button type="button" onClick={changeTaskInput}> Add a Task</button>
       </div>
@@ -53,7 +62,7 @@ export default function Tasks({ scheduleId }) {
       ) : null}
       <div className="staged-tasks">
         {tasks.map((task) => (
-          <div className="task">{task}</div>
+          <div className="task">{task.label}</div>
         ))}
       </div>
     </div>
