@@ -11,8 +11,10 @@ export default function Day({ dayObj }) {
   const [taskInput, setTaskInput] = useState(false);
   const [newTask, setNewTask] = useState({
     label: '',
-    schedule: dayObj?.scheduleId,
+    schedule: dayObj?.schedule,
     dayId: dayObj?.id,
+    user: dayObj.user,
+    locked_status: false,
   });
 
   const changeTaskInput = () => {
@@ -81,7 +83,7 @@ Day.propTypes = {
   dayObj: PropTypes.shape({
     id: PropTypes.number,
     weekday: PropTypes.string,
-    scheduleId: PropTypes.number,
+    schedule: PropTypes.number,
     user: PropTypes.number,
     date: PropTypes.string,
   }).isRequired,
