@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { createTask, getTasksBySchedule } from '../../utils/data/tasksData';
 import { useAuth } from '../../utils/context/authContext';
@@ -22,21 +22,27 @@ export default function Tasks({ scheduleId }) {
     }
   };
 
-  const submitTask = () => {
-    createTask(newTask);
-  };
-
-  useEffect(() => {
+  const fetchTasks = useCallback(() => {
     if (scheduleId) {
       getTasksBySchedule(scheduleId)
         .then((data) => {
-          console.log('api response', data);
           const filteredTasks = data.filter((item) => item.day === null);
           setTasks(filteredTasks);
-          console.log('tasks', tasks);
         });
     }
   }, [scheduleId]);
+
+  const submitTask = () => {
+    if (newTask.label === '') {
+      alert('Task cannot be empty');
+      return;
+    }
+    createTask(newTask).then(() => { fetchTasks(); }).then(setTaskInput(false));
+  };
+
+  useEffect(() => {
+    fetchTasks();
+  }, [fetchTasks]);
 
   useEffect(() => {
     setNewTask({ ...newTask, schedule: scheduleId });
