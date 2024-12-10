@@ -41,7 +41,7 @@ export default function Day({ dayObj }) {
       alert('Task cannot be empty');
       return;
     }
-    createTask(newTask).then(() => { fetchTasks(); }).then(console.log('i did it'));
+    createTask(newTask).then(() => { fetchTasks(); }).then(setTaskInput(false));
   };
 
   useEffect(() => {
