@@ -38,22 +38,22 @@ const createSchedule = (payload) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-// const updateProfile = (payload) => new Promise((resolve, reject) => {
-//   if (!payload.id) {
-//     reject(new Error('Profile ID is required for updating a profile.'));
-//     return;
-//   }
+const updateSchedule = (payload) => new Promise((resolve, reject) => {
+  if (!payload.id) {
+    reject(new Error('Profile ID is required for updating a profile.'));
+    return;
+  }
 
-//   fetch(`${clientCredentials.databaseURL}/profiles/${payload.id}`, {
-//     method: 'PUT',
-//     headers: {
-//       'Content-Type': 'application/json',
-//     },
-//     body: JSON.stringify(payload),
-//   })
-//     .then((data) => resolve(data))
-//     .catch(reject);
-// });
+  fetch(`${clientCredentials.databaseURL}/profiles/${payload.id}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(payload),
+  })
+    .then((data) => resolve(data))
+    .catch(reject);
+});
 
 // const getProfilesByCircle = (id) => new Promise((resolve, reject) => {
 //   fetch(`${clientCredentials.databaseURL}/profiles?circle=${id}`, {
@@ -87,7 +87,7 @@ export {
   getSchedulesByUser,
   getSingleSchedule,
   createSchedule,
-// updateProfile,
+  updateSchedule,
 // getProfilesByCircle,
 // deleteProfile,
 };
