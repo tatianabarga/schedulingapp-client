@@ -55,6 +55,18 @@ const updateSchedule = (payload) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+const addGoal = (payload) => new Promise((resolve, reject) => {
+  fetch(`${clientCredentials.databaseURL}/schedule/${payload.id}`, {
+    methos: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(payload),
+  })
+    .then((data) => resolve(data))
+    .catch(reject);
+});
+
 // const getProfilesByCircle = (id) => new Promise((resolve, reject) => {
 //   fetch(`${clientCredentials.databaseURL}/profiles?circle=${id}`, {
 //     method: 'GET',
@@ -88,6 +100,7 @@ export {
   getSingleSchedule,
   createSchedule,
   updateSchedule,
+  addGoal,
 // getProfilesByCircle,
 // deleteProfile,
 };
