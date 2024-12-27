@@ -4,14 +4,18 @@ import Day from './Day';
 import { getDaysBySchedule } from '../../utils/data/dayData';
 import Goals from './Goals';
 import Tasks from './Tasks';
-import { updateSchedule } from '../../utils/data/scheduleData';
+import { addGoal } from '../../utils/data/scheduleData';
 
 export default function Schedule({ scheduleObj }) {
   const [daysArr, setDaysArr] = useState([]); // array of days
   const [goalInput, setGoalInput] = useState(false);
   const [newGoal, setNewGoal] = useState('');
-  const [newGoals, setNewGoals] = useState('');
   const [goals, setGoals] = useState('');
+
+  const payload = {
+    id: scheduleObj.id,
+    goal: newGoal,
+  };
 
   const changeGoalInput = () => {
     if (goalInput === true) {
@@ -24,10 +28,6 @@ export default function Schedule({ scheduleObj }) {
   const newGoalChange = (e) => {
     setNewGoal(`${e.target.value}`);
     console.log('newGoal: ', newGoal);
-  };
-
-  const changeGoals = () => {
-    setNewGoals(`${goals} -- ${newGoal}`); // make this concatenate
   };
 
   const fetchGoals = useCallback(() => {
@@ -43,7 +43,7 @@ export default function Schedule({ scheduleObj }) {
       alert('Goal cannot be empty');
       return;
     }
-    changeGoals().then(updateSchedule(newGoals)).then(() => { fetchGoals(); }).then(setGoalInput(false));
+    addGoal(payload).then(() => { fetchGoals(); }).then(setGoalInput(false));
   }; // write update schedule function
 
   useEffect(() => {
